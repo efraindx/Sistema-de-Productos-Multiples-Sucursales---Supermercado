@@ -1,0 +1,77 @@
+﻿@model SuperMarket.Models.Producto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Nuevo Producto</h2>
+<br />
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype= "multipart/form-data"}))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Producto</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Titulo)
+        </div>
+        
+        <div class="editor-label">
+            @Html.TextBoxFor(model => model.Titulo)
+        </div>
+        
+        <br />
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Foto)
+        </div>
+
+        <div>
+            <input type="file" name="file" id="file" />
+        </div>
+
+        <br />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TipoProductoID, "TipoProducto")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TipoProductoID", String.Empty)
+            @Html.ValidationMessageFor(model => model.TipoProductoID)
+        </div>
+
+        <br />
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SucursalId, "Sucursal")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SucursalId", String.Empty)
+            @Html.ValidationMessageFor(model => model.SucursalId)
+        </div>
+
+        <br />
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SuplidorId, "Suplidor")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SuplidorId", String.Empty)
+            @Html.ValidationMessageFor(model => model.SuplidorId)
+        </div>
+
+        <br />
+
+        <p>
+            <input class="btn btn-success" type="submit" value="Agregar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Volver a Productos", "Index", null, new {@class = "btn btn-info" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

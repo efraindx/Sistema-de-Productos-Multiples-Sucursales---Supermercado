@@ -1,0 +1,43 @@
+﻿@model SuperMarket.Models.Producto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles Producto</h2>
+
+<div class="divProduct">
+     <div class="divImagen">
+         <img src="@Model.Foto" />
+     </div>
+</div>
+
+<fieldset>
+    <legend>Producto</legend>
+
+    <div class="display-label">
+         @Html.LabelFor(model => model.TipoProducto.Tipo, "Tipo de Producto")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TipoProducto.Tipo)
+    </div>
+    <br />
+    <div class="display-label">
+         @Html.LabelFor(model => model.Sucursal.Nombre, "Nombre Sucursal")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sucursal.Nombre)
+    </div>
+     <br />
+    <div class="display-label">
+         @Html.LabelFor(model => model.Suplidor.Nombre, "Nombre Suplidor")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Suplidor.Nombre)
+    </div>
+    <br />
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.Id}) |
+    @Html.ActionLink("Volver a Productos", "Index")
+</p>

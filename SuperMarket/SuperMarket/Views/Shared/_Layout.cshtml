@@ -1,0 +1,56 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Mi aplicación ASP.NET MVC</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        @RenderSection("scripts", required:false)   
+    </head>
+    <body>
+        <header>
+             <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+                  <div class="container">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      @Html.ActionLink("SuperMarket", "Index", "Home", new { @class = "navbar-brand"})
+                    </div>
+                    <div class="collapse navbar-collapse">
+                      <ul class="nav navbar-nav">
+                        <li class="active"> @Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li><a href="#about">Sobre</a></li>
+                          <li>@Html.ActionLink("Productos", "Index", "Product")</li>
+                          <li>@Html.ActionLink("Suplidores", "Suplidores", "Product")</li>
+                      </ul>
+                    </div><!-- /.nav-collapse -->
+                  </div><!-- /.container -->
+                </div><!-- /.navbar -->
+             @Html.Partial("_LoginPartial")
+        </header>
+        <div id="body">
+            <div id="divLoading" class="loadingMask"></div>
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET MVC</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

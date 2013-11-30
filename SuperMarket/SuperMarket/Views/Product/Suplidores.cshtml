@@ -1,0 +1,65 @@
+﻿@model List<SuperMarket.Models.Producto>
+
+@{
+    SuperMarket.Models.MarketContext db = new SuperMarket.Models.MarketContext();
+    var productos = db.Productos.ToList();
+}
+
+@using(Html.BeginForm("Suplidores", "Product", FormMethod.Post)) {
+
+    <div>
+        <h3>Suplidores</h3>
+        <br />
+    
+            <div class="row">
+                <div class="col-md-4">
+                   @Html.Label("Producto:")  
+                </div>
+                <div class="col-md-4">
+                    <select name="productId" class="btn btn-warning">
+                        <option>Seleccione</option>
+                        @foreach (var producto in productos)
+                        { 
+                            <option value="@producto.Id">@producto.Titulo</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input class="btn btn-success" type="submit" value="Ver suplidores" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+
+                    @if(Model.Count > 0) {
+
+                    <table class="table table-striped">
+                        <tr>    
+                            <th>Suplidor ID</th>
+                            <th>Nombre Suplidor</th>
+                        </tr>
+
+                        @foreach (var producto in Model)
+                        { 
+                            <tr>
+                                <td>@producto.SuplidorId</td>
+                                <td>@producto.Suplidor.Nombre</td>
+                            </tr>
+                        }
+                      </table>
+                   }
+                    else 
+                    {
+                                <h4>Preiose la tecla para buscar</h4>
+                    }
+                   
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+
+    </div>
+}
+

@@ -1,0 +1,67 @@
+﻿@model SuperMarket.Models.Producto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editando Productos</h2>
+
+ <div class="divProduct">
+      <div class="divImagen">
+          <img src="@Model.Foto" />
+      </div>
+ </div>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Producto</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Foto, "Cambiar Foto")
+        </div>
+
+        <div>
+            <input type="file" name="file" id="file">
+        </div><br />
+            
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TipoProductoID, "TipoProducto")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TipoProductoID", String.Empty)
+            @Html.ValidationMessageFor(model => model.TipoProductoID)
+        </div>
+        <br />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SucursalId, "Sucursal")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SucursalId", String.Empty)
+            @Html.ValidationMessageFor(model => model.SucursalId)
+        </div><br />
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SuplidorId, "Suplidor")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SuplidorId", String.Empty)
+            @Html.ValidationMessageFor(model => model.SuplidorId)
+        </div>
+        <br />
+        <p>
+            <input class="btn btn-success" type="submit" value="Guardar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Volver al listado", "Index", null, new {@class = "btn btn-info" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

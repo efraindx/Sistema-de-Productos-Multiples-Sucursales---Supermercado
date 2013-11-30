@@ -1,0 +1,39 @@
+﻿@model List<SuperMarket.Models.TipoProducto>
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+            <h3>Tipos de Productos de Sucursal Santo Domingo</h3>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+      <div class="col-md-4">
+          <table class="table table-striped">
+              <tr>
+                  <th>TipoProductoID</th>
+                  <th>Tipo Producto</th>
+                  <th>Sucursal</th>
+              </tr>
+
+              @foreach (var tipoProducto in Model)
+              { 
+                    <tr>
+                        <td>@tipoProducto.TipoProductoId</td>
+                        <td>@tipoProducto.Tipo</td>
+                        <td>@tipoProducto.Sucursal.Nombre</td>
+                    </tr>
+              }
+
+          </table>
+    </div>
+      <div class="col-md-4">
+
+    </div>
+</div>

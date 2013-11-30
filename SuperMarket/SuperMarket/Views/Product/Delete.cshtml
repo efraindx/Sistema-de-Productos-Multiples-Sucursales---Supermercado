@@ -1,0 +1,46 @@
+﻿@model SuperMarket.Models.Producto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+ <div class="divProduct">
+      <div class="divImagen">
+          <img src="@Model.Foto" />
+      </div>
+ </div>
+
+<h2>Eliminar Producto</h2>
+
+<h3>Está seguro de eliminar este producto?</h3>
+<fieldset>
+    <legend>Producto</legend>
+
+    <div class="editor-label">
+         @Html.LabelFor(model => model.TipoProducto.Tipo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TipoProducto.Tipo)
+    </div>
+    <br />
+    <div class="display-label">
+         @Html.LabelFor(model => model.Sucursal.Nombre, "Nombre Sucursal")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sucursal.Nombre)
+    </div><br />
+
+    <div class="display-label">
+         @Html.LabelFor(model => model.Suplidor.Nombre, "Nombre Suplidor")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Suplidor.Nombre)
+    </div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input class="btn btn-danger" type="submit" value="Delete" /> |
+        @Html.ActionLink("Volver a productos", "Index", null, new {@class = "btn btn-info"})
+    </p>
+}

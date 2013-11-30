@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SuperMarket.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+
+    SuperMarket.Models.MarketContext db = new SuperMarket.Models.MarketContext();
+    var sucursales = db.Sucursales.ToList();
+
+    var tiposProductos = db.TiposProductos.ToList();
+}
+
+@Html.Partial("_PartialSucursales", "$('#txtSucursalId').prop('value', $('#mySelect').val())")
+
+ <section class="dropdown" id="dropdown">
+     @Html.Label("Sucursal:")
+    <select class="btn btn-info" name="sucursalSelected" id="mySelect">
+         @foreach (var sucursal in sucursales)
+         { 
+              <option value="@sucursal.SucursalId">@sucursal.Nombre</option>
+         }
+     </select>
+ </section>
+
+<h2>Productos</h2>
+
+<p>
+    @Html.ActionLink("Agregar Nuevo", "Create", null, new { @class = "btn btn-primary" })
+</p>
+    
+
+@foreach (var item in Model) {
+ <div class="divProduct">
+        <div class="divImagen">
+            <a href="@Url.Action("Details", "Product", new { id=item.Id }, null)">
+                <img src="@item.Foto" />
+            </a>
+        </div>
+            @Html.ActionLink("Editar", "Edit",new { id=item.Id}) |
+            @Html.ActionLink("Detalles", "Details",new { id=item.Id }) |
+            @Html.ActionLink("Borrar",  "Delete",  new { id=item.Id})
+</div>
+}
+<br />
+
+@Html.Partial("_Sucursales", tiposProductos)
