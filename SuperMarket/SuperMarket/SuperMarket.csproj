@@ -39,10 +39,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -60,9 +66,6 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -168,26 +171,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201311292257506_m.cs" />
-    <Compile Include="Migrations\201311292257506_m.Designer.cs">
-      <DependentUpon>201311292257506_m.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311292359129_m1.cs" />
-    <Compile Include="Migrations\201311292359129_m1.Designer.cs">
-      <DependentUpon>201311292359129_m1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311300154095_m2.cs" />
-    <Compile Include="Migrations\201311300154095_m2.Designer.cs">
-      <DependentUpon>201311300154095_m2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311300957592_m3.cs" />
-    <Compile Include="Migrations\201311300957592_m3.Designer.cs">
-      <DependentUpon>201311300957592_m3.cs</DependentUpon>
+    <Compile Include="Migrations\201312041129569_m.cs" />
+    <Compile Include="Migrations\201312041129569_m.Designer.cs">
+      <DependentUpon>201312041129569_m.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\MarketContext.cs" />
-    <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\ProductModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -312,8 +302,8 @@
     <Content Include="Views\Product\Delete.cshtml" />
     <Content Include="Views\Product\MostrarResultados.cshtml" />
     <Content Include="Views\Product\Suplidores.cshtml" />
-    <Content Include="Views\Shared\_PartialSucursales.cshtml" />
-    <Content Include="Views\Shared\_Sucursales.cshtml" />
+    <Content Include="Views\Product\Sucursales.cshtml" />
+    <Content Include="Views\Product\Inventario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,17 +312,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201311292257506_m.resx">
-      <DependentUpon>201311292257506_m.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311292359129_m1.resx">
-      <DependentUpon>201311292359129_m1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311300154095_m2.resx">
-      <DependentUpon>201311300154095_m2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311300957592_m3.resx">
-      <DependentUpon>201311300957592_m3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201312041129569_m.resx">
+      <DependentUpon>201312041129569_m.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -351,7 +332,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55402</DevelopmentServerPort>
+          <DevelopmentServerPort>59850</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:55241/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

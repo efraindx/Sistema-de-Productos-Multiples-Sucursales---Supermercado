@@ -26,21 +26,24 @@
                       </button>
                       @Html.ActionLink("SuperMarket", "Index", "Home", new { @class = "navbar-brand"})
                     </div>
-                    <div class="collapse navbar-collapse">
+                    <div class="navbar-collapse collapse">
                       <ul class="nav navbar-nav">
                         <li class="active"> @Html.ActionLink("Inicio", "Index", "Home")</li>
-                        <li><a href="#about">Sobre</a></li>
+                        <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                           <li>@Html.ActionLink("Productos", "Index", "Product")</li>
                           <li>@Html.ActionLink("Suplidores", "Suplidores", "Product")</li>
+                          <li>@Html.ActionLink("Sucursales", "Sucursales", "Product")</li>
+                          <li>@Html.ActionLink("Inventario", "Inventario", "Product")</li>
                       </ul>
+                         @Html.Partial("_LoginPartial")
                     </div><!-- /.nav-collapse -->
                   </div><!-- /.container -->
                 </div><!-- /.navbar -->
-             @Html.Partial("_LoginPartial")
+            
         </header>
-        <div id="body">
-            <div id="divLoading" class="loadingMask"></div>
+        <div id="body"><br /><br /><br />
             @RenderSection("featured", required: false)
+           
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>

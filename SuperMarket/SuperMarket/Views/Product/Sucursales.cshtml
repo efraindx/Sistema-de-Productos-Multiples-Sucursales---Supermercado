@@ -1,0 +1,94 @@
+﻿@model List<SuperMarket.Models.TipoProducto>
+
+@{
+    SuperMarket.Models.MarketContext db = new SuperMarket.Models.MarketContext();
+    var sucursales = db.Sucursales.ToList();
+
+    var sucursalActual = ViewBag.actualSucursal;
+
+    int sucursalActualId = 0;
+    
+    if(sucursalActual != null) {
+        sucursalActualId = sucursalActual.SucursalId;
+    }
+
+    string sucursalActualName = "";
+    
+    if(sucursalActual != null) {
+        sucursalActualName = sucursalActual.Nombre;
+    }
+}
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+            <h3>Tipos de Productos de Sucursal @sucursalActualName</h3>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+@using(Html.BeginForm("Sucursales" , "Product", FormMethod.Post)) {
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+      <div class="col-md-4">
+                        <input class="btn btn-success" type="submit" value="Ubicar Existencia de Productos en esta sucursal" />
+           
+      </div>
+
+     <section class="dropdown" id="dropdown">
+             @Html.Label("Sucursal:")
+            <select class="btn btn-info" name="sucursalId" id="mySelect">
+                  <option>Selecciona</option>
+                 @foreach (var sucursal in sucursales)
+                 { 
+                      <option value="@sucursal.SucursalId">@sucursal.Nombre</option>
+                 }
+             </select>
+         </section>
+      
+
+          <table class="table table-striped">
+              <tr>
+                  <th>Tipo Producto</th>
+                  <th>Sucursal</th>
+                  <th>Cantidad Productos</th>
+              </tr>
+
+              @if(Model.Count > 0) {
+                  
+                  foreach (var tipoProducto in Model)
+                  { 
+                      var cantidadProductosSucursal = db.Productos.Where(p => p.TipoProductoID == tipoProducto.TipoProductoId && p.SucursalId == sucursalActualId).ToList().Count;
+             
+                        <tr>
+                            <td>@tipoProducto.Tipo</td>
+                            <td>@tipoProducto.Sucursal.Nombre</td>
+                            <td>@cantidadProductosSucursal</td>
+                        </tr>
+                  }
+
+              } else {
+                  <tr>
+                      <td></td>
+                      <td>
+                          <div class="alert alert-warning fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            No existen productos en esta sucursal
+                          </div>
+                      </td>
+                      <td></td>
+                  </tr>
+              }
+            
+          </table>
+
+     <div class="col-md-4">
+         
+      </div>
+    </div>
+}

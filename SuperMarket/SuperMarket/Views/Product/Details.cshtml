@@ -16,6 +16,14 @@
     <legend>Producto</legend>
 
     <div class="display-label">
+        @Html.LabelFor(m => m.Titulo, "Titulo")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(m => m.Titulo)
+    </div>
+    <br />
+
+    <div class="display-label">
          @Html.LabelFor(model => model.TipoProducto.Tipo, "Tipo de Producto")
     </div>
     <div class="display-field">
@@ -34,6 +42,14 @@
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Suplidor.Nombre)
+    </div>
+        <br />
+
+    <div class="display-label">
+        @Html.LabelFor(m => m.MarcaProducto.Nombre, "Marca Produto")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(m => m.MarcaProducto.Nombre)
     </div>
     <br />
 </fieldset>

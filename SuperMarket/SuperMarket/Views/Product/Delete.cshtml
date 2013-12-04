@@ -37,6 +37,13 @@
         @Html.DisplayFor(model => model.Suplidor.Nombre)
     </div>
 
+    <div class="display-label">
+        @Html.LabelFor(m => m.MarcaProducto.Nombre, "Marca Producto")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(m => m.MarcaProducto.Nombre)
+    </div>
+
 </fieldset>
 @using (Html.BeginForm()) {
     <p>

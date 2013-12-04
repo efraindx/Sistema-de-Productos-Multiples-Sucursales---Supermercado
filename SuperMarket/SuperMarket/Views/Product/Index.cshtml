@@ -9,18 +9,6 @@
     var tiposProductos = db.TiposProductos.ToList();
 }
 
-@Html.Partial("_PartialSucursales", "$('#txtSucursalId').prop('value', $('#mySelect').val())")
-
- <section class="dropdown" id="dropdown">
-     @Html.Label("Sucursal:")
-    <select class="btn btn-info" name="sucursalSelected" id="mySelect">
-         @foreach (var sucursal in sucursales)
-         { 
-              <option value="@sucursal.SucursalId">@sucursal.Nombre</option>
-         }
-     </select>
- </section>
-
 <h2>Productos</h2>
 
 <p>
@@ -41,5 +29,3 @@
 </div>
 }
 <br />
-
-@Html.Partial("_Sucursales", tiposProductos)

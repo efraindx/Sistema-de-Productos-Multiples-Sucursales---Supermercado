@@ -61,8 +61,8 @@ c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\bi
 c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.csprojResolveAssemblyReference.cache
 c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.dll
 c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.pdb
-c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.Migrations.m.resources
-c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.csproj.GenerateResource.Cache
-c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.Migrations.m1.resources
-c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.Migrations.m2.resources
-c:\users\efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.Migrations.m3.resources
+C:\Users\Efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\bin\EntityFramework.SqlServer.dll
+C:\Users\Efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\bin\EntityFramework.SqlServer.xml
+C:\Users\Efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.Migrations.m.resources
+C:\Users\Efrain\documents\visual studio 2012\Projects\SuperMarket\SuperMarket\obj\Debug\SuperMarket.csproj.GenerateResource.Cache

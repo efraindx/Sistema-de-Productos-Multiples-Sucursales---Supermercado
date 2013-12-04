@@ -12,13 +12,22 @@
       </div>
  </div>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Producto</legend>
 
         @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Titulo, "Titulo")
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Titulo)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Foto, "Cambiar Foto")
@@ -52,6 +61,13 @@
             @Html.ValidationMessageFor(model => model.SuplidorId)
         </div>
         <br />
+        <div class="editor-label">
+            @Html.LabelFor(m => m.MarcaProductoId, "Marca Producto")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("MarcaProductoId", String.Empty)
+            @Html.ValidationMessageFor(m => m.MarcaProductoId)
+        </div>
         <p>
             <input class="btn btn-success" type="submit" value="Guardar" />
         </p>

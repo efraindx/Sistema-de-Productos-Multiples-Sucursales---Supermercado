@@ -1,0 +1,171 @@
+﻿@{
+    SuperMarket.Models.MarketContext db = new SuperMarket.Models.MarketContext();
+    var sucursales = db.Sucursales.ToList();
+    var firstSucursal = sucursales.First();
+    var tiposProductos = db.TiposProductos.Where(t => t.SucursalId == firstSucursal.SucursalId).ToList();
+    var firstTipoProducto = tiposProductos.First();
+    
+    var cantidadProductosFirst = db.Productos.Where(p => p.SucursalId == firstSucursal.SucursalId && p.TipoProductoID == firstTipoProducto.TipoProductoId).Count();
+    
+    }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h3>Inventario</h3>
+    <div id="divInventario" class="alert alert-danger fade in">
+
+        <form onsubmit="return validarForm();" method="post" action="@Url.Action("Inventario")">
+
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">
+                <table id="tblEnvios">
+                    <tr>
+                        <td>
+                            Sucursal:
+                            <select id="selectSucursal" name="sucursalId">
+                                @foreach (var sucursal in sucursales)
+                                { 
+                                    <option value="@sucursal.SucursalId">@sucursal.Nombre</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            Tipo de Producto:
+                            <select id="selectTipoProduct" name="tipoProductoId">
+                                @foreach (var tipoProducto in tiposProductos)
+                                { 
+                                    <option value="@tipoProducto.TipoProductoId">@tipoProducto.Tipo</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            Cantidad:
+                            <select id="cantidad" name="cantidad">
+                                @if (cantidadProductosFirst > 0) {
+                                    for (int i = cantidadProductosFirst; i > 0; i--)
+                                    { 
+                                        <option value="@i">@i</option>
+                                    }
+                                } else
+                                {
+                                    <option>0</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                             Sucursal Destino:
+                            <select id="sucursal2" name="sucursal2Id">
+                                @foreach (var sucursal in sucursales)
+                                { 
+                                    <option value="@sucursal.SucursalId">@sucursal.Nombre</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                <div class="col-md-4"></div>
+                </div>
+             <div class="row">
+                    <div class="col-md-5">&nbsp;</div>
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">&nbsp;</div>
+                    <div class="col-md-4">
+                        <input type="submit" class="btn btn-success" />
+                    </div>
+                    <div class="col-md-4">&nbsp;</div>
+                </div>
+             </form>
+        <input type="hidden" id="valueIdSucursal" />
+        <input type="hidden" id="valueTipoProduct" />
+          </div>
+ 
+
+    <script>
+
+        $("#selectSucursal").change(function () {
+            var select = $("#selectTipoProduct");
+            var url = '@Url.Action("FindProductosBySucursalId")';
+            var sucursalId = $("#selectSucursal").val();
+
+            $.getJSON(url, { id: sucursalId }, function (data) {
+                select.empty();
+                for (var i = 0; i < data.length; i++)
+                {
+                    if (data[i] != '') {
+                        $('#selectTipoProduct').append('<option value="' + data[i].TipoProductoId + '">' + data[i].Tipo + '</option>');
+                    } 
+                }
+            });
+
+           var url2 = '@Url.Action("FindCantidadProductos")';
+           var productId = $("#selectTipoProduct").val();
+
+           $.getJSON(url2, { idSucursal: sucursalId, tipoProductoId: productId }, function (data) {
+                for (var i = data; i > 0; i--) {
+                    if (i > 0) {
+                        $("#cantidad").append('<option value="' + i + '">' + i + '</option>');
+                    } else {
+                        cantidad.empty();
+                        $("#cantidad").append('<option value="0">0</option>');
+                    }
+                }
+            });
+
+        });
+        
+        $("#selectTipoProduct").change(function () {
+            var url2 = '@Url.Action("FindCantidadProductos")';
+            var cantidad = $("#cantidad");
+            var productId = $("#selectTipoProduct").val();
+            var sucursalId = $("#selectSucursal").val();
+
+            $.getJSON(url2, { idSucursal: sucursalId, tipoProductoId: productId }, function (data) {
+                for (var i = data; i > 0; i--) {
+                    if (i > 0) {
+                        $("#cantidad").append('<option value="' + i + '">' + i + '</option>');
+                    } else {
+                        cantidad.empty();
+                        $("#cantidad").append('<option value="0">0</option>');
+                    }
+                }
+            });
+        });
+
+        function validarForm() {
+
+            cantidad = $("#cantidad").val();
+
+            if (cantidad == "0")
+            {
+                alert("No existen productos en la categoria y sucursal seleccionada.");
+                return false;
+            }
+
+            sucursal = $("#selecSucursal").val();
+            sucursal2 = $("#sucursal2").val();
+
+            if (sucursal == sucursal2)
+            {
+                alert("La primera sucursalno puede ser igual a la segunda.");
+                return false;
+            }
+
+
+        }
+
+    </script>
+
+
+</body>
+</html>

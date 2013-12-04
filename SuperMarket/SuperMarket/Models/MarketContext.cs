@@ -17,5 +17,6 @@ namespace SuperMarket.Models
         public DbSet<Suplidor> Suplidores { get; set; }
         public DbSet<Sucursal> Sucursales { get; set; }
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<MarcaProducto> MarcaProductos { get; set; }
     }
 }
